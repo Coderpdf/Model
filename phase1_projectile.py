@@ -7,7 +7,7 @@ from mpl_toolkits.mplot3d import Axes3D
 g = 9.81                     # gravity m/s²
 v0 = 700                  # nominal speed m/s
 angle_deg = 15            # nominal launch angle
-h0 = 1.5                  # initial height m
+h0 = 28.6                  # initial height m
 vz = 50                   # lateral velocity m/s
 
 # uncertainty parameters
