@@ -1,42 +1,41 @@
-import numpy as np
-import matplotlib.pyplot as plt
+# Step 1: Import libraries
+import numpy as np            # for calculations
+import matplotlib.pyplot as plt  # for plotting
 
-# -----------------------------
-# PHASE 1: BASIC PROJECTILE MOTION
-# -----------------------------
+# Step 2: Define constants
+g = 9.81  # gravity in m/s²
 
-# Constants
-GRAVITY = 9.81  # m/s^2
+# Step 3: Set initial conditions
+v0 = 700         # initial speed in m/s
+angle_deg = 15   # launch angle in degrees
+h0 = 1.5         # initial height in meters
 
-# Initial conditions (you can change these)
-initial_speed = 700      # m/s
-launch_angle_deg = 15    # degrees
-initial_height = 1.5     # meters (approx shoulder height)
+# Step 4: Convert angle to radians
+angle_rad = np.radians(angle_deg)
 
-# Convert angle to radians
-launch_angle_rad = np.radians(launch_angle_deg)
+# Step 5: Calculate velocity components
+vx = v0 * np.cos(angle_rad)  # horizontal speed
+vy = v0 * np.sin(angle_rad)  # vertical speed
 
-# Initial velocity components
-vx = initial_speed * np.cos(launch_angle_rad)
-vy = initial_speed * np.sin(launch_angle_rad)
+# Step 6: Create time array
+t_max = 2                       # maximum time to simulate (seconds)
+num_points = 500                 # number of points in the simulation
+t = np.linspace(0, t_max, num_points)
 
-# Time array
-t = np.linspace(0, 2, 500)  # simulate first 2 seconds
+# Step 7: Calculate positions
+x = vx * t                          # horizontal positions
+y = h0 + vy * t - 0.5 * g * t**2   # vertical positions
 
-# Position equations
-x = vx * t
-y = initial_height + vy * t - 0.5 * GRAVITY * t**2
+# Step 8: Remove points below ground
+ground_mask = y >= 0
+x = x[ground_mask]
+y = y[ground_mask]
 
-# Stop trajectory when bullet hits the ground
-ground_index = np.where(y >= 0)
-x = x[ground_index]
-y = y[ground_index]
-
-# Plot
-plt.figure()
-plt.plot(x, y)
-plt.xlabel("Horizontal Distance (meters)")
-plt.ylabel("Height (meters)")
-plt.title("Phase 1: Basic Bullet Trajectory")
+# Step 9: Plot trajectory
+plt.figure(figsize=(8,4))
+plt.plot(x, y, color='blue')
+plt.xlabel("Horizontal Distance (m)")
+plt.ylabel("Height (m)")
+plt.title("Step-by-Step Bullet Trajectory")
 plt.grid(True)
 plt.show()
