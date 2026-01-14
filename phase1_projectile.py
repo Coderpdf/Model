@@ -5,7 +5,7 @@ from mpl_toolkits.mplot3d import Axes3D
 # -------------------------
 # PARAMETERS
 # -------------------------
-g = 1                     # gravity m/s²
+g = 9.81                     # gravity m/s²
 v0 = 700                  # nominal speed m/s
 angle_deg = 15            # nominal launch angle
 h0 = 1.5                  # initial height m
